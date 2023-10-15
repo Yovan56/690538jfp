@@ -11,6 +11,8 @@ class Korisnik
 	public $telefon;
 	public $adresa;
 	public $grad;
+	public $vrstaKorisnika;
+	public $timestamp;
 	public static function registracija($ime,$prezime,$korisnickoIme,$mejl,$lozinka,$telefon,$adresa,$grad){
  		$db = Database::getInstance();
  		$query = "INSERT INTO korisnici (ime,prezime,korisnickoIme,mejl,lozinka,telefon,adresa,grad) VALUES (:ime,:prezime,:korisnickoIme,:mejl,:lozinka,:telefon,:adresa,:grad)";
@@ -73,6 +75,16 @@ class Korisnik
  		$query = "Update korisnici set vrstaKorisnika = 1 where id = :id";
  		$params = [
  			':id' => $id
+ 		];
+ 		$db -> update("Korisnik",$query,$params);
+ 	
+ 	}
+ 	public static function promeniVrstuKorisniku($id,$vk){
+ 		$db = Database::getInstance();
+ 		$query = "Update korisnici set vrstaKorisnika = :vk where id = :id";
+ 		$params = [
+ 			':id' => $id,
+ 			':vk' => $vk
  		];
  		$db -> update("Korisnik",$query,$params);
  	

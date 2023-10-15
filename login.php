@@ -1,15 +1,4 @@
-<?php
-require_once __DIR__ . '/tabele/Korisnik.php';
-require_once __DIR__ . '/config.php';
-session_start();
-if(isset($_SESSION['id'])){
-$korisnikID=$_SESSION['id'];
-}
-else{
-$korisnikID = 0;	
-}
-$korisnik=Korisnik::getByID($korisnikID);
-?>
+<?php ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,30 +7,23 @@ $korisnik=Korisnik::getByID($korisnikID);
 	<title></title>
 	<script src="js/jquery-3.7.1.js"></script>
 	<script>
-	 
+	
 	</script>
 </head>
 <body>
 <header><nav>
 	<a href = "login.php">registracija</a>
 	<a href = "registracija.php">registracija</a>
-	<a href = "promeniLozinku.php">promeniLozinku</a>
-	<?php
-		switch($korisnik->vrstaKorisnika){
-			case 1:
-			echo '';
-			break;
-			case 2:
-			echo '';
-			break;
-			case 3:
-			echo '<a href ="administrator.php">administrator</a>';
-			break;
-			default:;
-		}
-	?>
 </nav></header>
-<div></div>
+<div>
+	<form id = "forma" action = "logika/logovanje.php"method="post">
+	
+	<input type="text" name="korisnickoIme" placeholder="korisnicko ime" required><br>
+	<input type="text" name="lozinka" placeholder="lozinka" required><br>
+	<input type="submit" name="submit">
+
+</form>
+</div>
 <footer></footer>
 
 
